@@ -2,9 +2,11 @@ require('dotenv').config() //for env file to load up
 
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 const app = express();
 app.use(bodyparser.json()); //utilizes the body-parser package
+app.use(cors())
 
 mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => console.log('Connected to database...'))
