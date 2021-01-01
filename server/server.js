@@ -5,15 +5,12 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 
 const app = express();
-app.use(bodyparser.json()); //utilizes the body-parser package
+app.use(express.json()); //utilizes the body-parser package
 app.use(cors())
 
-mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => console.log('Connected to database...'))
     .catch(err => console.log(err))
-
-// use Routes
-app.use('/api/items', require('./routes/api/items'))
 
 
 // Serve static assests if in production
